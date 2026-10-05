@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rahul Sanklecha</title>
-  <meta name="description" content="Dual-degree engineering and data science student building toward quantitative trading and data roles.">
+  <meta name="description" content="Student building toward quantitative trading.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
@@ -24,18 +24,16 @@
     html { background: var(--bg); }
     body { margin:0; color:var(--ink); background:var(--bg); line-height:1.6;
            font-family:"Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
-    main { max-width:920px; margin:0 auto; padding:16vh 28px 64px; }
+    main { max-width:920px; margin:0 auto; padding:14vh 28px 56px; }
     p { margin:0; }
     a { color:inherit; text-decoration:none; transition:color .15s; }
     a:hover { color:var(--accent); }
-    a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+    a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
 
-    /* theme toggle: sun and moon */
     #theme-toggle { position:fixed; top:16px; right:16px; width:40px; height:40px; display:grid; place-items:center;
                     color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:50%;
                     cursor:pointer; padding:0; transition:border-color .15s, color .15s; }
     #theme-toggle:hover { border-color:var(--accent); color:var(--accent); }
-    #theme-toggle:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
     #theme-toggle svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8;
                         stroke-linecap:round; stroke-linejoin:round; }
     .sun { display:none; } .moon { display:block; }
@@ -46,32 +44,46 @@
     :root[data-theme="dark"] .sun { display:block; }
     :root[data-theme="dark"] .moon { display:none; }
 
-    /* hero */
-    .who { color:var(--muted); margin-bottom:20px; }
+    .who { color:var(--muted); margin-bottom:16px; }
     h1 { font-family:"Instrument Serif", Georgia, serif; font-weight:400;
-         font-size:clamp(2.6rem, 8vw, 4.2rem); line-height:1.04; letter-spacing:-0.02em;
-         margin:0 0 28px; max-width:14em; }
-    .bio { max-width:34em; color:var(--muted); font-size:1.05rem; margin-bottom:28px; }
+         font-size:clamp(2.2rem, 6vw, 3.1rem); line-height:1.08; letter-spacing:-0.015em;
+         margin:0 0 24px; max-width:16em; }
     .links { display:flex; gap:28px; flex-wrap:wrap; font-weight:500; }
 
-    /* three columns */
-    .columns { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px 56px; margin-top:80px; }
-    .col h2 { font-size:1rem; font-weight:400; letter-spacing:.02em; color:var(--muted); margin:0 0 32px; }
-    .item { margin-bottom:28px; }
-    .name { font-weight:600; margin-bottom:6px; }
+    .columns { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px 56px; margin-top:72px; }
+    h2 { font-size:1rem; font-weight:400; letter-spacing:.02em; color:var(--muted); margin:0 0 28px; }
+    .item { margin-bottom:24px; }
+    .name { font-weight:600; margin-bottom:4px; }
     .note { color:var(--muted); font-size:.95rem; line-height:1.55; }
     .ext::after { content:" \2197"; font-size:.85em; }
-    @media (max-width:760px) { .columns { grid-template-columns:1fr; gap:24px; margin-top:56px; } }
+    @media (max-width:760px) { .columns { grid-template-columns:1fr; gap:16px; margin-top:48px; } }
 
-    footer { margin-top:80px; color:var(--muted); font-size:.9rem; }
+    .puzzle { margin:56px auto 0; max-width:34em; text-align:center; border:1px solid var(--line);
+              border-radius:56px; padding:28px 44px 32px; }
+    .puzzle-head { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; }
+    .puzzle h2 { margin:0; }
+    .die { width:22px; height:22px; flex:none; color:var(--muted); fill:none; stroke:currentColor; stroke-width:1.6;
+           stroke-linejoin:round; transition:transform .45s cubic-bezier(.3,1.5,.5,1); }
+    .die circle { fill:currentColor; stroke:none; }
+    .q { margin-bottom:16px; }
+    .options { display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:22em; margin:0 auto 14px; }
+    .pill { font:inherit; font-size:.92rem; color:var(--ink); background:none; border:1px solid var(--line);
+            border-radius:999px; padding:8px 14px; cursor:pointer; transition:color .15s, border-color .15s, opacity .15s; }
+    .pill:not(:disabled):hover { color:var(--accent); border-color:var(--accent); }
+    .pill:disabled { cursor:default; }
+    .opt.right { border-color:var(--accent); color:var(--accent); }
+    .opt.wrong { opacity:.4; text-decoration:line-through; }
+    #next { color:var(--muted); font-size:.9rem; }
+    .fb { min-height:1.5em; font-size:.95rem; color:var(--muted); margin-bottom:4px; }
+    .fb strong, .ans strong { color:var(--ink); font-weight:600; }
+    .ans { color:var(--muted); font-size:.95rem; margin-bottom:12px; animation:fade .3s ease both; }
+    .actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+    @keyframes fade { from { opacity:0; } }
+    @media (max-width:560px) { .puzzle { border-radius:40px; padding:24px 24px 28px; } }
+    @media (prefers-reduced-motion: reduce) { .die { transition:none; } .ans { animation:none; } }
+
+    footer { margin-top:72px; color:var(--muted); font-size:.9rem; }
     .credit { text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:4px; }
-
-    .hero > * { animation:rise .7s cubic-bezier(.2,.7,.2,1) both; }
-    .hero > :nth-child(2) { animation-delay:.08s; }
-    .hero > :nth-child(3) { animation-delay:.16s; }
-    .hero > :nth-child(4) { animation-delay:.24s; }
-    @keyframes rise { from { opacity:0; transform:translateY(10px); } }
-    @media (prefers-reduced-motion: reduce) { .hero > * { animation:none; } }
   </style>
 </head>
 <body>
@@ -81,60 +93,52 @@
   </button>
 
   <main>
-    <header class="hero">
+    <header>
       <p class="who">Rahul Sanklecha</p>
       <h1>Markets, math, and the systems that connect them.</h1>
-      <p class="bio">I study electronics and data science, and I am building toward a career in quantitative trading. I also enjoy data analytics and data engineering.</p>
-      <nav class="links" aria-label="Contact">
+      <nav class="links" aria-label="Links">
         <a href="https://github.com/lexxbak">GitHub</a>
-        <a href="https://linkedin.com/in/your-handle">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/rsanklecha/">LinkedIn</a>
       </nav>
     </header>
 
     <div class="columns">
-      <section class="col">
+      <section>
         <h2>Experience</h2>
-        <div class="item"><p class="name">Kramarine Pvt Ltd</p><p class="note">Software Engineer Intern</p><p class="note">Built the company website in React.js. Growth and investor outreach.</p></div>
-        <div class="item"><p class="name">Morgan Stanley</p><p class="note">Early Insights Program</p><p class="note">Sales &amp; Trading, Investment Banking, Technology</p></div>
-        <div class="item"><p class="name">HPAIR 2026</p><p class="note">Delegate, Hanoi</p><p class="note">Selected from 50,000+ applicants</p></div>
-        <div class="item"><p class="name">Rice University</p><p class="note">Research assistant and panelist</p><p class="note">K-12 online learning study</p></div>
+        <div class="item"><p class="name">Kramarine Pvt Ltd</p><p class="note">Software engineer intern</p></div>
+        <div class="item"><p class="name">Morgan Stanley</p><p class="note">Early Insights Program</p></div>
+        <div class="item"><p class="name">HPAIR 2026</p><p class="note">Delegate, 50,000+ applicants</p></div>
+        <div class="item"><p class="name"><a class="ext" href="https://lexxbak.github.io/phimc/">PhiMC</a></p><p class="note">Founded an online math contest, 300+ participants</p></div>
       </section>
 
-      <section class="col">
+      <section>
         <h2>Projects</h2>
-        <div class="item"><p class="name"><a class="ext" href="https://github.com/lexxbak/citytrek">citytrek</a></p><p class="note">Chess bot for the Optiver AI Chessathon. Alpha-beta search with a neural net evaluator. Peak Elo 1500.</p></div>
-        <div class="item"><p class="name">Library Room Booking</p><p class="note">Study room reservations with conflict detection. 2500+ monthly users.</p></div>
-        <div class="item"><p class="name"><a class="ext" href="https://github.com/Godzilla0604/blocksense">blocksense</a></p><p class="note">AI Bitcoin transaction intelligence.</p></div>
-        <div class="item"><p class="name"><a class="ext" href="https://github.com/lexxbak/scudem_prelims">SCUDEM</a></p><p class="note">Euler and RK4 methods in MATLAB.</p></div>
+        <div class="item"><p class="name"><a class="ext" href="https://github.com/lexxbak/citytrek">citytrek</a></p><p class="note">Chess bot for the Optiver AI Chessathon. Peak Elo 1500.</p></div>
+        <div class="item"><p class="name">Library Room Booking</p><p class="note">Study room reservations, 2500+ monthly users</p></div>
+        <div class="item"><p class="name"><a class="ext" href="https://github.com/Godzilla0604/blocksense">blocksense</a></p><p class="note">AI Bitcoin transaction intelligence</p></div>
       </section>
 
-      <section class="col">
+      <section>
         <h2>Recognition</h2>
-        <div class="item"><p class="name">SASMO</p><p class="note">Bronze medal, 2023</p></div>
         <div class="item"><p class="name">AIME</p><p class="note">Qualified through AMC 10, 2022</p></div>
-        <div class="item"><p class="name">picoCTF</p><p class="note">3rd nationally, U.S. Middle School Division, 2021</p></div>
-        <div class="item"><p class="name">NSDA Nationals</p><p class="note">Qualified in Extempore Speaking and Congressional Debate, 2021</p></div>
-        <div class="item"><p class="name">MSNCT</p><p class="note">25th nationally, 2021</p></div>
-      </section>
-
-      <section class="col">
-        <h2>Education</h2>
-        <div class="item"><p class="name">IIT Madras</p><p class="note">BSc Data Science</p><p class="note">CGPA 8.88. 2025 to present</p></div>
-        <div class="item"><p class="name">Nirma University</p><p class="note">B.Tech Electronics and Communication</p><p class="note">CGPA 8.62. 2025 to present</p></div>
-      </section>
-
-      <section class="col">
-        <h2>Founded</h2>
-        <div class="item"><p class="name"><a class="ext" href="https://lexxbak.github.io/phimc/">PhiMC</a></p><p class="note">Online math contest with 300+ participants. Sponsors included Desmos, Wolfram Alpha, and AoPS.</p></div>
-      </section>
-
-      <section class="col">
-        <h2>Skills</h2>
-        <div class="item"><p class="name">Languages</p><p class="note">Python (NumPy, Pandas), C, SQL</p></div>
-        <div class="item"><p class="name">Web</p><p class="note">React.js, HTML/CSS</p></div>
-        <div class="item"><p class="name">Tools</p><p class="note">Git, GitHub, LaTeX</p></div>
+        <div class="item"><p class="name">SASMO</p><p class="note">Bronze medal, 2023</p></div>
+        <div class="item"><p class="name">picoCTF</p><p class="note">3rd nationally, U.S. Middle School Division</p></div>
       </section>
     </div>
+
+    <section class="puzzle" aria-labelledby="puzzle-title">
+      <div class="puzzle-head">
+        <svg class="die" id="die" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="8.5" cy="8.5" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="15.5" cy="15.5" r="1.3"/></svg>
+        <h2 id="puzzle-title">a little puzzle</h2>
+      </div>
+      <p class="q" id="q"></p>
+      <div class="options" id="options" role="group" aria-label="Answer choices"></div>
+      <p class="fb" id="fb" aria-live="polite"></p>
+      <p class="ans" id="ans" hidden></p>
+      <div class="actions">
+        <button class="pill" type="button" id="next">Another one</button>
+      </div>
+    </section>
 
     <footer>&copy; 2026 Rahul Sanklecha. Design inspired by <a class="credit" href="https://www.damkam.tech">Damodar Kamani</a>.</footer>
   </main>
@@ -155,6 +159,76 @@
       render();
     });
     render();
+
+    var puzzles = [
+      { q: "You roll a fair die until you get a 6. On average, how many rolls does it take?",
+        opts: ["3", "3.5", "6", "12"], c: 2,
+        why: "Each roll succeeds with probability 1/6, so the expected wait is 6 rolls." },
+      { q: "You flip a fair coin until you see two heads in a row. What is the expected number of flips?",
+        opts: ["3", "4", "6", "8"], c: 2,
+        why: "After one head, the next flip either finishes (1/2) or sends you back to the start. Solving the two equations gives 6." },
+      { q: "You roll two fair dice and take the larger number. What is its expected value?",
+        opts: ["3.5", "4", "About 4.47", "5"], c: 2,
+        why: "P(max = k) = (2k - 1)/36, so E = (1 + 6 + 15 + 28 + 45 + 66)/36 = 161/36." },
+      { q: "You roll a die and are paid its face value in dollars. You may roll once more and keep the new roll instead. What is the expected payout with the best strategy?",
+        opts: ["$3.50", "$4.00", "$4.25", "$4.50"], c: 2,
+        why: "Reroll anything below the 3.5 average, so on 1, 2, or 3. E = (3 x 3.5 + 4 + 5 + 6)/6 = 25.5/6 = 4.25." },
+      { q: "You shuffle a 52 card deck. On average, how many cards end up in their original position?",
+        opts: ["0", "1", "2", "26"], c: 1,
+        why: "Each card has a 1/52 chance, and by linearity of expectation 52 x 1/52 = 1." },
+      { q: "How many rolls of a fair die does it take on average to see all six faces at least once?",
+        opts: ["9", "12", "14.7", "36"], c: 2,
+        why: "6 x (1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6) = 14.7." },
+      { q: "How many people do you need in a room for two of them to share a birthday with probability above 50%?",
+        opts: ["23", "50", "70", "183"], c: 0,
+        why: "The chance that all 23 differ is 365/365 x 364/365 x ... x 343/365, which is about 0.493." },
+      { q: "You draw two cards from a standard deck without replacement. What is the probability that both are aces?",
+        opts: ["1/13", "1/26", "1/169", "1/221"], c: 3,
+        why: "(4/52) x (3/51) = 12/2652 = 1/221." },
+      { q: "Monty Hall: three doors, one prize. You pick a door, the host opens a different door with no prize, and offers a switch. What is your win probability if you switch?",
+        opts: ["1/3", "1/2", "2/3", "1"], c: 2,
+        why: "Your first pick is right 1/3 of the time, and the reveal does not change that. Switching wins in the other 2/3 of cases." }
+    ];
+    var order = [], pos = -1, angle = 0, cur = null;
+    var dieEl = document.getElementById("die"), qEl = document.getElementById("q"), fbEl = document.getElementById("fb"),
+        aEl = document.getElementById("ans"), oEl = document.getElementById("options");
+
+    function shuffleArr(a) {
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
+    function shuffle() {
+      order = shuffleArr(puzzles.map(function (_, i) { return i; }));
+      pos = -1;
+    }
+    function show() {
+      pos++; if (pos >= order.length) { shuffle(); pos = 0; }
+      cur = puzzles[order[pos]];
+      angle += 90; dieEl.style.transform = "rotate(" + angle + "deg)";
+      qEl.textContent = cur.q; fbEl.textContent = ""; aEl.hidden = true; oEl.innerHTML = "";
+      var items = shuffleArr(cur.opts.map(function (text, i) { return { text: text, ok: i === cur.c }; }));
+      items.forEach(function (it) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "pill opt"; b.textContent = it.text;
+        b.addEventListener("click", function () { pick(b, it.ok); });
+        oEl.appendChild(b);
+      });
+    }
+    function pick(btn, ok) {
+      if (!ok) {
+        btn.classList.add("wrong"); btn.disabled = true;
+        fbEl.textContent = "Not quite. Try another.";
+        return;
+      }
+      btn.classList.add("right");
+      Array.prototype.forEach.call(oEl.children, function (b) { b.disabled = true; });
+      fbEl.innerHTML = "<strong>Correct.</strong>";
+      aEl.textContent = cur.why; aEl.hidden = false;
+    }
+    document.getElementById("next").addEventListener("click", show);
+    shuffle(); show();
   </script>
 </body>
 </html>
